@@ -29,8 +29,10 @@ data = load_data()
 st.subheader(callSignDisplay + ' data')
 st.write(data.tail())
 
+stock = [data['Open'], data['Close']]
 
-fig = px.line(x= data['Date'], y=data['Close'], title=callSignDisplay + " Stock Prices") 
+
+fig = px.line(x= data['Date'], y=stock, title=callSignDisplay + " Stock Prices") 
 # fig.show()
 
 st.plotly_chart(fig, use_container_width=True)
