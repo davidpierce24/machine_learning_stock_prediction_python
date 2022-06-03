@@ -32,7 +32,12 @@ st.write(data.tail())
 stock = [data['Open'], data['Close']]
 
 
-fig = px.line(x= data['Date'], y=stock, title=callSignDisplay + " Stock Prices") 
+fig = px.line(x= data['Date'], y=stock, title=callSignDisplay + " Stock Prices")
+fig.update_layout(
+    xaxis_title = "Time",
+    yaxis_title = "Stock Price", 
+    xaxis_rangeslider_visible =True
+)
 # fig.show()
 
 st.plotly_chart(fig, use_container_width=True)
