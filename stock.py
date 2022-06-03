@@ -1,6 +1,7 @@
 # import requests
 # import matplotlib.pyplot as plt
 # import math
+from unicodedata import name
 import streamlit as st
 import plotly.express as px
 import pandas as pd
@@ -9,12 +10,13 @@ from datetime import date
 import yfinance as yf
 
 
-start = '2015-01-01'
+start = '2012-01-01'
 today = date.today().strftime("%Y-%m-%d")
 
 st.title("Stock Predictions")
 
 callSign = st.text_input('Stock Ticker Symbol', value = 'tsla')
+callSignDisplay = callSign.upper()
 
 
 @st.cache
@@ -25,14 +27,15 @@ def load_data():
 
 data = load_data()
 
-st.subheader(callSign + ' data')
+st.subheader(callSignDisplay + ' data')
 st.write(data.tail())
 
 
-
-df = pd.DataFrame({'time':timeStamp, 'price':priceData})
-fig = px.line(df, x="time", y="price", title=callSignDispaly + " Stock Prices") 
+fig = px.Figure()
+fig = px.line(x= data['Date'], y=data['Close'], title=callSignDisplay + " Stock Prices") 
 # fig.show()
+
+st.plotly_chart(fig, use_container_width=True)
 
 
 # # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
