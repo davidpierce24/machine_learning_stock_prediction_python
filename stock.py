@@ -63,6 +63,11 @@ st.write(forecast.tail())
 
 st.write('Forecast Data')
 fig2 = plot_plotly(m, forecast)
+fig2.update_layout(
+    xaxis_title = "Time",
+    yaxis_title = "Stock Price", 
+    xaxis_rangeslider_visible =True
+)
 st.plotly_chart(fig2)
 
 st.write('Forecast Components')
