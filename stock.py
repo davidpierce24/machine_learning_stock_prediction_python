@@ -15,6 +15,7 @@ today = date.today().strftime("%Y-%m-%d")
 st.title("Stock Predictions")
 
 callSign = st.text_input('Stock Ticker Symbol', value = 'tsla')
+# callSign = input('Ticker?')
 callSignDisplay = callSign.upper()
 
 
@@ -41,6 +42,9 @@ fig.update_layout(
 # fig.show()
 
 st.plotly_chart(fig, use_container_width=True)
+
+
+df_train = data[['Date', 'Close']]
 
 
 # # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
