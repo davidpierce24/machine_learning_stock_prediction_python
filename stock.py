@@ -7,6 +7,8 @@ import pandas as pd
 import numpy as py
 from datetime import date
 import yfinance as yf
+from fbprophet import Prophet
+from fbprophet.plot import plot_plotly
 
 
 start = '2012-01-01'
@@ -45,6 +47,11 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 df_train = data[['Date', 'Close']]
+df_train = df_train.rename(columns = {"Date": "ds", "Close": "y"})
+
+m = Prohpet()
+m.fit(df_train)
+future = m.make_future_dataframe(periods = period)
 
 
 # # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
