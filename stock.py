@@ -31,7 +31,6 @@ st.subheader(callSignDisplay + ' data')
 st.write(data.tail())
 
 
-fig = px.Figure()
 fig = px.line(x= data['Date'], y=data['Close'], title=callSignDisplay + " Stock Prices") 
 # fig.show()
 
