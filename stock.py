@@ -29,6 +29,12 @@ st.subheader(callSign + ' data')
 st.write(data.tail())
 
 
+
+df = pd.DataFrame({'time':timeStamp, 'price':priceData})
+fig = px.line(df, x="time", y="price", title=callSignDispaly + " Stock Prices") 
+# fig.show()
+
+
 # # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
 # url = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY&symbol={callSign}&outputsize=compact&apikey=1TON9HITVA38HZQ5'
 # r = requests.get(url)
