@@ -20,6 +20,9 @@ callSign = st.text_input('Stock Ticker Symbol', value = 'tsla')
 # callSign = input('Ticker?')
 callSignDisplay = callSign.upper()
 
+n_years = st.slider("Years of Prediction:", 1, 4)
+period = n_years * 365
+
 
 @st.cache
 def load_data():
@@ -49,9 +52,22 @@ st.plotly_chart(fig, use_container_width=True)
 df_train = data[['Date', 'Close']]
 df_train = df_train.rename(columns = {"Date": "ds", "Close": "y"})
 
-m = Prohpet()
+m = Prophet()
 m.fit(df_train)
 future = m.make_future_dataframe(periods = period)
+forecast = m.predict(future)
+
+st.subheader('Forecast data')
+st.write(forecast.tail())
+
+
+st.write('Forecast Data')
+fig2 = plot_plotly(m, forecast)
+st.plotly_chart(fig2)
+
+st.write('Forecast Components')
+fig3 = m.plot_components(forecast)
+st.write(fig3)
 
 
 # # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
