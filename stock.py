@@ -1,7 +1,6 @@
 # import requests
 # import matplotlib.pyplot as plt
 # import math
-from unicodedata import name
 import streamlit as st
 import plotly.express as px
 import pandas as pd
